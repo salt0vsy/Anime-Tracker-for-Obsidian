@@ -1,0 +1,57 @@
+filters:
+  and:
+    - file.inFolder("Media DB/series")
+properties:
+  note.currentlyAtEpisode:
+    displayName: Серія
+  note.episodes:
+    displayName: Всього
+views:
+  - type: cards
+    name: To watch
+    filters:
+      or:
+        - status == "to watch"
+        - status.isEmpty()
+    order:
+      - file.name
+      - year
+      - episodes
+    image: note.image
+    imageFit: cover
+    cardSize: 220
+  - type: cards
+    name: Watching
+    filters:
+      and:
+        - status == "watching"
+    order:
+      - file.name
+      - currentlyAtEpisode
+      - episodes
+    image: note.image
+    imageFit: cover
+    cardSize: 220
+  - type: cards
+    name: Watched
+    filters:
+      and:
+        - status == "watched"
+    order:
+      - file.name
+      - year
+    image: note.image
+    imageFit: cover
+    cardSize: 220
+  - type: cards
+    name: Dropped
+    filters:
+      and:
+        - status == "dropped"
+    order:
+      - file.name
+      - currentlyAtEpisode
+      - episodes
+    image: note.image
+    imageFit: cover
+    cardSize: 220
